@@ -1,4 +1,4 @@
-// ---------- Basic UI: menu toggle, active links, sticky header ----------
+// ---------- MENU + NAV ----------
 let menuIcon = document.querySelector("#menu-icon");
 let navbar = document.querySelector(".navbar");
 menuIcon && (menuIcon.onclick = () => {
@@ -27,8 +27,7 @@ window.addEventListener("scroll", () => {
   navbar && navbar.classList.remove("active");
 });
 
-// ---------- IntersectionObserver reveal ----------
-const observerOptions = { threshold: 0.12 };
+// ---------- SECTION REVEAL ----------
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -36,7 +35,7 @@ const observer = new IntersectionObserver((entries) => {
       observer.unobserve(entry.target);
     }
   });
-}, observerOptions);
+}, { threshold: 0.12 });
 
 document.querySelectorAll(".fade-in, .fade-up, .slide-left, .slide-right, .scale-in, .hover-glow, .Skills-box, .project-card, .edu-item")
   .forEach(el => observer.observe(el));
@@ -52,7 +51,7 @@ if (typeof Typed !== "undefined") {
   });
 }
 
-// ---------- GSAP motions ----------
+// ---------- GSAP ----------
 if (typeof gsap !== "undefined") {
   gsap.to(".profile-img", { y: -10, duration: 4.4, ease: "power1.inOut", yoyo: true, repeat: -1 });
   gsap.from(".home-content .intro, .home-content .big-title, .home-content .subtitle, .home-content .role, .home-content .btn", {
@@ -61,79 +60,38 @@ if (typeof gsap !== "undefined") {
   gsap.to(".footer-iconTap a", { y: -6, repeat: -1, yoyo: true, duration: 1.8, ease: "sine.inOut" });
 }
 
-// ---------- ScrollReveal fallback ----------
-if (typeof ScrollReveal !== "undefined") {
-  ScrollReveal().reveal(".heading, .subhead", { origin: "top", distance: "34px", duration: 760, delay: 110 });
-  ScrollReveal().reveal(".about-img, .home-img", { origin: "left", distance: "24px", duration: 860, delay: 150 });
-  ScrollReveal().reveal(".Skills-box, .project-card", { origin: "bottom", distance: "20px", duration: 860, interval: 80 });
-}
-
-// ---------- Neon Orbs + Canvas (optimized for mobile) ----------
-(function createNeonOrbs() {
+// ---------- SMOOTH LIGHT BACKGROUND ----------
+(function neonBackground() {
   const isMobile = window.innerWidth < 800;
+  const canvas = document.getElementById("neon-canvas");
+  const ctx = canvas ? canvas.getContext("2d") : null;
   const orbsContainer = document.querySelector(".neon-orbs");
-  const canvas = document.getElementById("neon-canvas");
-  if (!orbsContainer || !canvas) return;
+  if (!canvas || !ctx || !orbsContainer) return;
 
-  // reduce count and disable heavy animations on mobile
-  const orbCount = isMobile ? 5 : Math.min(10, Math.round(window.innerWidth / 160));
-  const colors = [
-    "rgba(0,230,255,0.18)",
-    "rgba(139,92,246,0.16)",
-    "rgba(255,77,210,0.14)",
-    "rgba(0,255,159,0.12)"
-  ];
-
-  for (let i = 0; i < orbCount; i++) {
-    const orb = document.createElement("div");
-    orb.className = "neon-orb";
-    const size = Math.random() * 180 + 100;
-    orb.style.width = `${size}px`;
-    orb.style.height = `${size}px`;
-    orb.style.left = `${Math.random() * 90}%`;
-    orb.style.top = `${Math.random() * 80}%`;
-    orb.style.background = `radial-gradient(circle at 30% 30%, ${colors[i % colors.length]}, transparent 70%)`;
-    orbsContainer.appendChild(orb);
-  }
-
-  if (isMobile) return; // skip animation loop for phones
-
-  let t = 0;
-  function animate() {
-    t += 0.015;
-    document.querySelectorAll(".neon-orb").forEach((el, i) => {
-      el.style.transform = `translateY(${Math.sin(t + i) * 10}px)`;
-    });
-    requestAnimationFrame(animate);
-  }
-  animate();
-})();
-
-// ---------- Canvas optimized (reduced FPS & disable on phones) ----------
-(function neonCanvas() {
-  const canvas = document.getElementById("neon-canvas");
-  if (!canvas) return;
-  const ctx = canvas.getContext("2d");
-  let w = canvas.width = window.innerWidth;
-  let h = canvas.height = window.innerHeight;
-  const isMobile = window.innerWidth < 800;
-
-  if (isMobile) {
-    ctx.fillStyle = "rgba(139,92,246,0.08)";
-    ctx.fillRect(0, 0, w, h);
-    return; // static background only on phones
-  }
-
+  // Resize properly to fit viewport
   function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
   }
+  resize();
   window.addEventListener("resize", resize);
 
+  // Always show static neon on mobile (no animation)
+  if (isMobile) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const grad = ctx.createRadialGradient(canvas.width/2, canvas.height/2, 0, canvas.width/2, canvas.height/2, canvas.width);
+    grad.addColorStop(0, "rgba(139,92,246,0.12)");
+    grad.addColorStop(0.5, "rgba(0,230,255,0.08)");
+    grad.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    return; // stop here for mobile — static background only
+  }
+
+  // Desktop dynamic glow — low intensity + limited frame rate
   let t = 0;
   let lastTime = 0;
-  const fpsInterval = 1000 / 30; // ~30 FPS
-
+  const fpsInterval = 1000 / 24; // limit to 24fps
   function draw(now) {
     if (now - lastTime < fpsInterval) {
       requestAnimationFrame(draw);
@@ -141,45 +99,52 @@ if (typeof ScrollReveal !== "undefined") {
     }
     lastTime = now;
     t += 0.008;
-    ctx.clearRect(0, 0, w, h);
-
-    const grad = ctx.createRadialGradient(w * 0.3, h * 0.4, 50, w * 0.3, h * 0.4, w * 0.9);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const grad = ctx.createRadialGradient(canvas.width*0.3, canvas.height*0.4, 60, canvas.width*0.3, canvas.height*0.4, canvas.width*0.9);
     grad.addColorStop(0, "rgba(139,92,246,0.10)");
-    grad.addColorStop(0.5, "rgba(0,230,255,0.05)");
+    grad.addColorStop(0.4, "rgba(0,230,255,0.06)");
     grad.addColorStop(1, "rgba(0,0,0,0)");
     ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, w, h);
-
-    for (let i = 0; i < 2; i++) {
-      const amp = 18 + i * 12;
-      const freq = 0.002 + i * 0.001;
-      const phase = t * (0.5 + i * 0.3);
-      const yOffset = h * (0.3 + i * 0.15);
-      ctx.beginPath();
-      for (let x = 0; x <= w; x += 10) {
-        const y = yOffset + Math.sin(x * freq + phase) * amp;
-        if (x === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      }
-      const color = `hsla(${200 + i * 40}, 90%, 60%, 0.08)`;
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 30 - i * 10;
-      ctx.stroke();
-    }
+    ctx.fillRect(0,0,canvas.width,canvas.height);
     requestAnimationFrame(draw);
   }
   requestAnimationFrame(draw);
+
+  // Simplified slow-moving orbs
+  const orbCount = 6;
+  for (let i = 0; i < orbCount; i++) {
+    const orb = document.createElement("div");
+    orb.className = "neon-orb";
+    const size = Math.random() * 150 + 100;
+    orb.style.width = `${size}px`;
+    orb.style.height = `${size}px`;
+    orb.style.left = `${Math.random() * 90}%`;
+    orb.style.top = `${Math.random() * 80}%`;
+    orb.style.background = `radial-gradient(circle, rgba(139,92,246,0.18), transparent 70%)`;
+    orbsContainer.appendChild(orb);
+  }
+
+  let orbPhase = 0;
+  function moveOrbs() {
+    orbPhase += 0.002;
+    document.querySelectorAll(".neon-orb").forEach((el, i) => {
+      const offset = Math.sin(orbPhase + i) * 10;
+      el.style.transform = `translateY(${offset}px)`;
+    });
+    requestAnimationFrame(moveOrbs);
+  }
+  requestAnimationFrame(moveOrbs);
 })();
 
-// ---------- Hero accent color cycle ----------
+// ---------- Accent Color Cycle ----------
 (function heroColorShift() {
   if (typeof gsap === "undefined") return;
-  const timeline = gsap.timeline({ repeat: -1, yoyo: true, defaults: { duration: 6, ease: "sine.inOut" } });
+  const timeline = gsap.timeline({ repeat: -1, yoyo: true, defaults: { duration: 8, ease: "sine.inOut" } });
   timeline.to("body", { "--accent-1": "#7a2cf0", "--accent-2": "#ff5fb3", "--accent-3": "#00ffb2" }, 0);
-  timeline.to("body", { "--accent-1": "#8b5cf6", "--accent-2": "#ff4dd2", "--accent-3": "#00ff9f" }, 6);
+  timeline.to("body", { "--accent-1": "#8b5cf6", "--accent-2": "#ff4dd2", "--accent-3": "#00ff9f" }, 8);
 })();
 
-// ---------- Respect reduced motion ----------
+// ---------- Reduced Motion ----------
 const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)");
 if (prefersReduced.matches) {
   try { gsap && gsap.killTweensOf("*"); } catch {}
