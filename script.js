@@ -61,80 +61,19 @@ if (typeof gsap !== "undefined") {
 }
 
 // ---------- SMOOTH LIGHT BACKGROUND ----------
-(function neonBackground() {
+(function mobileOptimize() {
   const isMobile = window.innerWidth < 800;
   const canvas = document.getElementById("neon-canvas");
-  const ctx = canvas ? canvas.getContext("2d") : null;
-  const orbsContainer = document.querySelector(".neon-orbs");
-  if (!canvas || !ctx || !orbsContainer) return;
+  if (!canvas) return;
 
-  // Resize properly to fit viewport
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener("resize", resize);
-
-  // Always show static neon on mobile (no animation)
   if (isMobile) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const grad = ctx.createRadialGradient(canvas.width/2, canvas.height/2, 0, canvas.width/2, canvas.height/2, canvas.width);
-    grad.addColorStop(0, "rgba(139,92,246,0.12)");
-    grad.addColorStop(0.5, "rgba(0,230,255,0.08)");
-    grad.addColorStop(1, "rgba(0,0,0,0)");
-    ctx.fillStyle = grad;
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-    return; // stop here for mobile — static background only
+    // Completely remove heavy background elements on phone
+    canvas.remove();
+    document.querySelectorAll(".neon-orb, .bg-layer").forEach(el => el.remove());
+    console.log("Mobile optimization: background effects removed for performance.");
   }
-
-  // Desktop dynamic glow — low intensity + limited frame rate
-  let t = 0;
-  let lastTime = 0;
-  const fpsInterval = 1000 / 24; // limit to 24fps
-  function draw(now) {
-    if (now - lastTime < fpsInterval) {
-      requestAnimationFrame(draw);
-      return;
-    }
-    lastTime = now;
-    t += 0.008;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const grad = ctx.createRadialGradient(canvas.width*0.3, canvas.height*0.4, 60, canvas.width*0.3, canvas.height*0.4, canvas.width*0.9);
-    grad.addColorStop(0, "rgba(139,92,246,0.10)");
-    grad.addColorStop(0.4, "rgba(0,230,255,0.06)");
-    grad.addColorStop(1, "rgba(0,0,0,0)");
-    ctx.fillStyle = grad;
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-    requestAnimationFrame(draw);
-  }
-  requestAnimationFrame(draw);
-
-  // Simplified slow-moving orbs
-  const orbCount = 6;
-  for (let i = 0; i < orbCount; i++) {
-    const orb = document.createElement("div");
-    orb.className = "neon-orb";
-    const size = Math.random() * 150 + 100;
-    orb.style.width = `${size}px`;
-    orb.style.height = `${size}px`;
-    orb.style.left = `${Math.random() * 90}%`;
-    orb.style.top = `${Math.random() * 80}%`;
-    orb.style.background = `radial-gradient(circle, rgba(139,92,246,0.18), transparent 70%)`;
-    orbsContainer.appendChild(orb);
-  }
-
-  let orbPhase = 0;
-  function moveOrbs() {
-    orbPhase += 0.002;
-    document.querySelectorAll(".neon-orb").forEach((el, i) => {
-      const offset = Math.sin(orbPhase + i) * 10;
-      el.style.transform = `translateY(${offset}px)`;
-    });
-    requestAnimationFrame(moveOrbs);
-  }
-  requestAnimationFrame(moveOrbs);
 })();
+
 
 // ---------- Accent Color Cycle ----------
 (function heroColorShift() {
@@ -152,3 +91,4 @@ if (prefersReduced.matches) {
   if (canvas) canvas.style.display = "none";
   document.querySelectorAll(".neon-orb").forEach((o) => o.remove());
 }
+
