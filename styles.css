@@ -518,14 +518,89 @@ textarea { width:100%; margin-top:1rem; padding:1rem; border-radius:8px; backgro
 }
 
 /* mobile */
-@media (max-width: 600px) {
-  :root { --main-color: #00d4ea; }
-  .project-card { width: 100%; }
-  .input-box input { width: 100%; }
-  .Skills-box { flex: 1 1 100%; }
-  .big-title { font-size: 3.2rem; }
-  .heading { font-size: 2.6rem; text-align: center; }
+/* ---------- Mobile fixes ---------- */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  section {
+    padding: 6rem 5% 2rem;
+    min-height: auto;
+  }
+
+  .home {
+    flex-direction: column-reverse;
+    padding-top: 8rem;
+    gap: 2rem;
+  }
+
+  .profile-img {
+    width: 70vw;
+    max-width: 300px;
+    height: auto;
+  }
+
+  .big-title {
+    font-size: 2.8rem;
+    line-height: 1.2;
+  }
+
+  .subtitle, .role, .intro {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: none;
+    background: rgba(10,10,12,0.96);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 1rem 0;
+  }
+
+  .navbar.active { display: block; }
+
+  .navbar a {
+    display: block;
+    text-align: center;
+    margin: 1rem 0;
+    font-size: 1.3rem;
+  }
+
+  .about {
+    flex-direction: column;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .Skills-box {
+    flex: 1 1 100%;
+    margin-bottom: 1rem;
+  }
+
+  .projects-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project-card {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  /* disable blur layers on mobile */
+  .bg-layer, .neon-orb, canvas#neon-canvas {
+    display: none !important;
+  }
 }
+
 
 /* ---------- Additional micro-animations for interactive neon flair ---------- */
 
@@ -594,3 +669,4 @@ textarea { width:100%; margin-top:1rem; padding:1rem; border-radius:8px; backgro
 
 /* small accessibility improvements */
 :focus { outline: 2px dashed rgba(255,255,255,0.06); outline-offset: 3px; border-radius: 6px; }
+
