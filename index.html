@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Apurba Kumar Jana | Portfolio</title>
 
-    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,27 +20,14 @@
       rel="stylesheet"
     />
   </head>
+
   <body>
-    <!-- animated background layers (kept but auto-disabled on mobile) -->
-    <div class="bg-animated" aria-hidden="true">
-      <div class="bg-layer layer-1"></div>
-      <div class="bg-layer layer-2"></div>
-      <div class="bg-layer layer-3"></div>
-
-      <!-- neon canvas & containers -->
-      <canvas id="neon-canvas" aria-hidden="true"></canvas>
-      <div class="neon-orbs" aria-hidden="true"></div>
-      <div class="neon-beams" aria-hidden="true"></div>
-      <div class="scanlines" aria-hidden="true"></div>
-    </div>
-
     <!-- header -->
     <header class="header">
-      <a href="#home" class="logo glow-text">Apurba Portfolio</a>
+      <a href="#" class="logo">Apurba Portfolio</a>
+      <i class="bx bx-menu" id="menu-icon"></i>
 
-      <i class="bx bx-menu" id="menu-icon" aria-hidden="true"></i>
-
-      <nav class="navbar" role="navigation" aria-label="Main Navigation">
+      <nav class="navbar">
         <a href="#home" class="active">Home</a>
         <a href="#about">About</a>
         <a href="#Skills">Skills</a>
@@ -50,41 +37,46 @@
     </header>
 
     <!-- Home Section -->
-    <section class="home" id="home" aria-label="home section">
-      <div class="home-content fade-in">
-        <h3 class="intro">Hello, It's Me</h3>
-        <h1 class="big-title glow-text">Apurba Kumar Jana</h1>
-        <h3 class="subtitle">And I'm a <span class="multiple-text"></span></h3>
-        <p class="role">Java Backend Developer</p>
+    <section class="home" id="home">
+      <div class="home-content">
+        <h3>Hello, It's Me</h3>
+        <h1>Apurba Kumar Jana</h1>
+        <h3>And I'm a <span class="multiple-text"></span></h3>
+        <p>Java Backend Developer</p>
 
-        <div class="social-media" aria-hidden="false">
-          <a href="https://github.com/Student-apurba" aria-label="GitHub"><i class="bx bxl-github"></i></a>
-          <a href="https://www.linkedin.com/in/apurba-kumar-jana-a1b008280" aria-label="LinkedIn"><i class="bx bxl-linkedin"></i></a>
+        <div class="social-media">
+          <a href="https://github.com/Student-apurba"
+            ><i class="bx bxl-github"></i
+          ></a>
+          <a href="https://www.linkedin.com/in/apurba-kumar-jana-a1b008280"
+            ><i class="bx bxl-linkedin"></i
+          ></a>
         </div>
 
-        <a href="https://drive.google.com/file/d/1yRplbXN_sgSTMfsjk6gUkBIsGY7sT0G-/view?usp=sharing" class="btn neon-btn">Download CV</a>
+        <a href="https://drive.google.com/file/d/1yRplbXN_sgSTMfsjk6gUkBIsGY7sT0G-/view?usp=sharing" class="btn">Download CV</a>
       </div>
 
-      <div class="home-img float-wrap" aria-hidden="true">
-        <img src="Apurba_image.png" alt="Apurba Kumar Jana" class="profile-img" />
+      <div class="home-img">
+        <img src="Apurba_image.png" alt="Apurba Kumar Jana" />
       </div>
     </section>
 
     <!-- about -->
-    <section class="about" id="about" aria-label="about section">
-      <div class="about-img slide-left">
-        <img src="Apurba_image.png" alt="Apurba Kumar Jana" class="about-photo" />
+    <section class="about" id="about">
+      <div class="about-img">
+        <img src="images/Apurba_image.png" alt="Apurba Kumar Jana" />
       </div>
 
-      <div class="about-content slide-right">
+      <div class="about-content">
         <h2 class="heading">About <span>Me</span></h2>
-        <h3 class="subhead glow-text">Java Backend Developer</h3>
+        <h3>Java Backend Developer</h3>
         <p>
-          Hello 👋, my name is <b>Apurba Kumar Jana</b> and I am from West Bengal, India. 
-          I am currently pursuing my Bachelor’s degree in Computer Science & Engineering 
-          from the Bengal Institute of Technology. I am a hardworking and self-motivated 
-          individual with strong problem-solving skills. I’m a passionate Java Backend 
-          Developer with experience in Core Java concepts, SQL, Spring Boot, JDBC, and 
+          Hello 👋, my name is <b>Apurba Kumar Jana</b> and I am from West
+          Bengal, India. I am currently pursuing my Bachelor’s degree in
+          Computer Science & Engineering from the Bengal Institute of
+          Technology. I am a hardworking and self-motivated individual with
+          strong problem-solving skills. I’m a passionate Java Backend Developer
+          with experience in Core Java concepts, SQL, Spring Boot, JDBC, and
           Postman. I love exploring and solving problems on LeetCode.
         </p>
 
@@ -92,19 +84,19 @@
         <div class="education">
           <h3>Education</h3>
 
-          <div class="edu-item hover-glow">
+          <div class="edu-item">
             <h4>Bengal Institute of Technology</h4>
             <p>Bachelor of Technology in Computer Science & Engineering</p>
             <span>2022 – 2026</span>
           </div>
 
-          <div class="edu-item hover-glow">
+          <div class="edu-item">
             <h4>Aloke Kendra High School</h4>
             <p>Secondary Education</p>
             <span>Jan 2019 – June 2020</span>
           </div>
 
-          <div class="edu-item hover-glow">
+          <div class="edu-item">
             <h4>Belgharia Jatindas Vidyamandir</h4>
             <p>Higher Secondary Education</p>
             <span>June 2021 – June 2022</span>
@@ -113,113 +105,150 @@
       </div>
     </section>
 
-    <!-- Skills -->
-    <section class="Skills" id="Skills" aria-label="skills section">
+    <!-- services -->
+    <section class="Skills" id="Skills">
       <h2 class="heading">Technical <span>Skills</span></h2>
+
       <div class="Skills-container">
-        <div class="Skills-box hover-glow">
-          <i class='bx bx-code-alt'></i>
+        <div class="Skills-box">
+          <i class="bx bx-code-alt"></i>
           <h3>Programming Languages</h3>
           <p>Core Java (OOPs, Exception Handling, Multithreading)</p>
         </div>
 
-        <div class="Skills-box hover-glow">
-          <i class='bx bx-data'></i>
+        <div class="Skills-box">
+          <i class="bx bx-data"></i>
           <h3>Data Structures & Algorithms</h3>
-          <p>Problem Solving (Linked List, Array, String, Stack, Queue), Basic knowledge of Tree and Graph</p>
+          <p>
+            Problem Solving (Linked List, Array, String, Stack, Queue), Basic
+            knowledge of Tree and Graph
+          </p>
         </div>
 
-        <div class="Skills-box hover-glow">
-          <i class='bx bx-cog'></i>
+        <div class="Skills-box">
+          <i class="bx bx-cog"></i>
           <h3>Frameworks & Technologies</h3>
-          <p>Spring Boot (Dependency Injection, REST API, Post Mapping), JDBC, Postman</p>
+          <p>
+            Spring Boot (Dependency Injection, REST API, Post Mapping), JDBC,
+            Postman
+          </p>
         </div>
 
-        <div class="Skills-box hover-glow">
-          <i class='bx bx-server'></i>
+        <div class="Skills-box">
+          <i class="bx bx-server"></i>
           <h3>Database Management</h3>
           <p>SQL, MySQL, Relational Database Concepts (DBMS)</p>
         </div>
 
-        <div class="Skills-box hover-glow">
-          <i class='bx bx-layer'></i>
+        <div class="Skills-box">
+          <i class="bx bx-layer"></i>
           <h3>Java Collections Framework</h3>
           <p>Lists, Sets, Maps, Queues, Iterators</p>
         </div>
 
-        <div class="Skills-box hover-glow">
-          <i class='bx bx-laptop'></i>
+        <div class="Skills-box">
+          <i class="bx bx-laptop"></i>
           <h3>Operating Systems</h3>
           <p>Windows, Linux (Basic Commands & Concepts)</p>
         </div>
 
-        <div class="Skills-box hover-glow">
-          <i class='bx bx-network-chart'></i>
+        <div class="Skills-box">
+          <i class="bx bx-network-chart"></i>
           <h3>Computer Networks</h3>
           <p>TCP/IP, OSI Model, Network Protocols (HTTP, DNS, etc.)</p>
         </div>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section class="projects" id="projects" aria-label="projects section">
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
       <h2 class="heading">My <span>Projects</span></h2>
 
       <div class="projects-container">
-        <div class="project-card hover-glow">
-          <img src="hotel_img.jpg" alt="Hotel Reservation System">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <img src="hotel_img.jpg" alt="Hotel Reservation System" />
           <div class="project-content">
             <h3>Hotel Reservation System</h3>
             <p>
-              Console-based Java application to manage hotel bookings and customers.
-              Implemented CRUD operations with JDBC and MySQL for database handling.
-              Focused on OOP principles, exception handling, and modular code design.
+              Console-based Java application to manage hotel bookings and
+              customers. Implemented CRUD operations with JDBC and MySQL for
+              database handling. Focused on OOP principles, exception handling,
+              and modular code design.
             </p>
-            <a href="https://github.com/Student-apurba/Hotel_managment_system" class="project-link" target="_blank">View on GitHub</a>
+            <a
+              href="https://github.com/Student-apurba/Hotel_managment_system"
+              class="project-link"
+              target="_blank"
+              >View on GitHub</a
+            >
           </div>
         </div>
 
-        <div class="project-card hover-glow">
-          <img src="bank_img.png" alt="Banking Management System">
+        <!-- Project 2 -->
+        <div class="project-card">
+          <img src="bank_img.png" alt="Banking Management System" />
           <div class="project-content">
             <h3>Banking Management System</h3>
             <p>
-              Terminal-based project to manage customer accounts, deposits, and withdrawals.
-              Connected Java and MySQL using JDBC for real-time data transactions.
-              Practiced core Java concepts like multithreading and collections.
+              Terminal-based project to manage customer accounts, deposits, and
+              withdrawals. Connected Java and MySQL using JDBC for real-time
+              data transactions. Practiced core Java concepts like multithreading
+              and collections.
             </p>
-            <a href="https://github.com/Student-apurba/BankingManagementSystem" class="project-link" target="_blank">View on GitHub</a>
+            <a
+              href="https://github.com/Student-apurba/BankingManagementSystem"
+              class="project-link"
+              target="_blank"
+              >View on GitHub</a
+            >
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section class="contact" id="contact" aria-label="contact section">
+    <!-- contact -->
+    <section class="contact" id="contact">
       <h2 class="heading">Contact <span>Me!</span></h2>
 
-      <form action="mailto:apurbaj603@gmail.com" method="post" enctype="text/plain" class="contact-form">
+      <form
+        action="mailto:apurbaj603@gmail.com"
+        method="post"
+        enctype="text/plain"
+      >
         <div class="input-box">
           <input type="text" placeholder="Full Name" />
           <input type="email" placeholder="Email Address" />
         </div>
+
         <div class="input-box">
           <input type="number" placeholder="Mobile Number" />
           <input type="text" placeholder="Email Subject" />
         </div>
-        <textarea cols="30" rows="10" placeholder="Your Message"></textarea>
-        <input type="submit" value="Send Message" class="btn neon-btn" />
+
+        <textarea
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+          placeholder="Your Message"
+        ></textarea>
+
+        <input type="submit" value="Send Message" class="btn" />
       </form>
     </section>
 
     <!-- footer -->
     <footer class="footer">
       <div class="footer-text">
-        <p>Copyright &copy; 2025 by Apurba Kumar Jana | All Rights Reserved</p>
+        <p>
+          Copyright &copy; 2023 by Apurba Kumar Jana |
+          All Rights Reserved|
+        </p>
       </div>
 
       <div class="footer-iconTap">
-        <a href="#home" aria-label="Back to top"><i class="bx bx-up-arrow-alt"></i></a>
+        <a href="#home"><i class="bx bx-up-arrow-alt"></i></a>
       </div>
     </footer>
 
@@ -229,12 +258,7 @@
     <!-- typed js -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
-    <!-- GSAP for motion -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
     <!-- custom js -->
     <script src="script.js"></script>
   </body>
 </html>
-
-
